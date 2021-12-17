@@ -1,0 +1,12 @@
+[build]
+target = "thumbv7em-none-eabihf"
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+rustflags = [
+  # This is needed in case your flash or ram addresses are not aligned to 0x10000 in memory.x
+  # See https://github.com/rust-embedded/cortex-m-quickstart/pull/95
+  "-C", "link-arg=--nmagic",
+
+  # LLD (shipped with the Rust toolchain) is used as the default linker and executes link.x
+  "-C", "link-arg=-Tlink.x",
+]
