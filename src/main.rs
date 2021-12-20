@@ -6,7 +6,6 @@ use panic_semihosting as _;
 use embedded_hal as hal;
 use nrf52840_hal as c_hal;
 
-use core::num::Wrapping;
 use cortex_m_rt::entry;
 use hal::{blocking::delay::DelayMs, digital::v2::OutputPin};
 
@@ -20,7 +19,7 @@ fn main() -> ! {
     let mut is_on = true;
     let mut delay = c_hal::delay::Delay::new(core_periph.SYST);
     loop {
-        delay.delay_ms(100u16);
+        delay.delay_ms(1000u16);
         is_on = !is_on;
         if is_on {
             bled.set_high().unwrap();

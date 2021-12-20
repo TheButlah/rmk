@@ -14,3 +14,4 @@ usb-device = "0.2.7"
 usbd-serial = "0.1.0"
 nrf52840-hal = "0.14"
 embedded-hal = "0.2"
+snafu = { version = "0.6", default-features = false }

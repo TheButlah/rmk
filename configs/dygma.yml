@@ -1,0 +1,60 @@
+version: 1
+
+type: "row-major" # Adjacent indices/keys are along the rows of the keyboard
+
+layout:
+  left:
+    - [7x1U] # Aligned to left side, so no offsets necessary
+    - [1x1.5U, 5x1U]
+    - [1x1.75U, 5x1U]
+    - [1x2.25U, 5x1U]
+    - [3x1.25U, 1x1.75U, 1x1.5U]
+    - spacings: [1x2U, 1x1U]
+      offset: 4U # Offset is from left side
+
+  right:
+    - [6x1U, 1x2U] # Aligned to right side, so no offsets necessary
+    - [7x1U, 1x1.5U]
+    - [6x1U, 1x2.25U]
+    - [5x1U, 1x3U]
+    - [1x1.25U, 1x1.75U, 4x1.25U]
+    - spacings: [1x1U, 1x2U]
+      offset: 5U # Offset is from right side
+
+gpio:
+  # GPI pins are typically labeled with respect to the arduino pin names on the pro
+  # micro. The format is IN_OUT.
+
+  # TODO: Actually define GPIO
+  left:
+    - []
+    - []
+    - []
+    - []
+    - []
+    - []
+  right:
+    - []
+    - []
+    - []
+    - []
+    - []
+    - []
+
+# TODO: Actually define the keymap
+keymap:
+  default_layer:
+    left:
+      - []
+      - []
+      - []
+      - []
+      - []
+      - []
+    right:
+      - []
+      - []
+      - []
+      - []
+      - []
+      - []
