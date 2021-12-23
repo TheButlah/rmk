@@ -1,7 +1,7 @@
 use crate::action::Action;
 
 use alloc::vec::Vec;
-use snafu::{ensure, Snafu};
+use snafu::{ensure, OptionExt, Snafu};
 
 #[derive(Copy, Clone, Hash, Debug, Eq, PartialEq)]
 pub struct Position {
@@ -28,7 +28,7 @@ pub enum Error {
 
 pub struct Keymap {
     n_layers: u8,
-    actions: Vec<Vec<Action>>, // outer, inner, layer (last two dims flattened)
+    actions: Vec<Vec<Action>>, // outer, layer, inner (last two dims flattened)
     orientation: Orientation,
 }
 impl Keymap {
@@ -38,6 +38,18 @@ impl Keymap {
 
     pub fn get(&self, pos: Position, layer: LayerId) -> Result<Action, Error> {
         ensure!(layer.0 < self.n_layers(), InvalidLayer { l: layer });
-        todo!("Get the action")
+        match self.orientation {
+            Orientation::RowMajor => self
+                .actions
+                .get(pos.row as usize)
+                .and_then(|v| v.get(layer.0 as usize * self.n_layers() as usize + pos.col as usize))
+                .copied(),
+            Orientation::ColumnMajor => self
+                .actions
+                .get(pos.col as usize)
+                .and_then(|v| v.get(layer.0 as usize * self.n_layers() as usize + pos.row as usize))
+                .copied(),
+        }
+        .with_context(|| InvalidPosition { p: pos })
     }
 }
