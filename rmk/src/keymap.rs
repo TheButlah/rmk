@@ -50,6 +50,6 @@ impl Keymap {
                 .and_then(|v| v.get(layer.0 as usize * self.n_layers() as usize + pos.row as usize))
                 .copied(),
         }
-        .with_context(|| InvalidPosition { p: pos })
+        .context(InvalidPosition { p: pos })
     }
 }
