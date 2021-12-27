@@ -2,16 +2,16 @@
 name = "rmk"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.56"  # Rust 2021
+rust-version = "1.56" # Rust 2021
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 cortex-m-rt = "0.7.0"
 panic-semihosting = "0.5.3"
-nrf52840-pac = "0.10.1"
-usb-device = "0.2.7"
 usbd-serial = "0.1.0"
 nrf52840-hal = "0.14"
 embedded-hal = "0.2"
 snafu = { version = "0.6", default-features = false }
+rmk_hid = { path = "../hid" }
+usbd-hid = "0.5"
